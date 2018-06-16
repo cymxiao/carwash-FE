@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 
 import { TabsPage } from '../tabs/tabs';
-import { RegisterPage } from "../register/register";
 import { IUser } from '../../model/user';
 import { IAccount } from '../../model/account';
 import { ICarport } from '../../model/carport';
@@ -30,7 +29,7 @@ import { BasePage } from '../base/base';
 })
 export class LoginPage extends BasePage {
 
-
+  userRole = 'carowner';
   isLogin: string = "login";
   public user: any;
   usernameBlur: boolean;
@@ -56,16 +55,6 @@ export class LoginPage extends BasePage {
     super.ionViewDidLoad();
     this.redirctPage(this.currentUser);
   }
-
-   // go to login page
-   navToLoginPage() {
-    this.navCtrl.setRoot(LoginPage);
-  }
-
-  navToRegisterPage() {
-    this.navCtrl.setRoot(RegisterPage);
-  }
-
   // login and go to home page
   login() {
     if(!this.user.phone  || !this.user.pwd ){
@@ -77,13 +66,15 @@ export class LoginPage extends BasePage {
       password: this.user.pwd
     }).then((usr: IUser) => {
       if (usr) {
+        console.log(this.userRole);
         //If lastLoginDate is null in mongo db, it means , there may be no verify code send to this user's cellphone.
         //create user account for pmc user and normal user.
         this.service.addAccount({ user_ID: usr._id, credit: 0 }).then((account: IAccount) => {
           if (account) {
             const udpateContent = {
               lastLoginDate: new Date(),
-              account_ID: account._id
+              account_ID: account._id,
+              role: this.userRole,
             };
             this.service.updateUser(usr._id, udpateContent).then((uptUser: any) => {
               //console.log(uptUser);
@@ -123,17 +114,15 @@ export class LoginPage extends BasePage {
 
   redirctPage(usr: IUser) { 
     if (usr && usr._id) { 
-      if ( usr.role && usr.role[0] === UserRoleEnum.PMCUser ) {
+      if ( usr.role && usr.role[0] === UserRoleEnum.WashMan ) {
 
         localStorage.setItem('user', JSON.stringify(usr));
         this.navCtrl.setRoot(PmcCarportDashboardPage, { "refresh": "true" });
-      } else {
-        if (usr.username === AppSettings.PHONE_ADMIN) {
+      } else if ( usr.role && usr.role[0] === UserRoleEnum.AdminUser ) { 
           this.navCtrl.setRoot(AdminDashboardPage);
         } else {
           this.navCtrl.setRoot(TabsPage);
         }
       }  
     }
-  }
 }

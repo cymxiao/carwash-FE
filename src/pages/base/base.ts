@@ -19,7 +19,7 @@ import { AppSettings , UserRoleEnum , UserStatusEnum } from '../../settings/app-
 export class BasePage {
 
   //all varaibles in base should be public ,otherwise it's can't be accessed by inherit sub class.
-  public isPMCUser: boolean;
+  public isWMUser: boolean;
   public isAdminUser: boolean;
   public currentUser: IUser;
   public pendingStatus: boolean;
@@ -56,8 +56,8 @@ export class BasePage {
   }
 
   checkPMCUser(){  
-    if (this.currentUser && this.currentUser.role && this.currentUser.role[0] === UserRoleEnum.PMCUser) {
-      this.isPMCUser = true;
+    if (this.currentUser && this.currentUser.role && this.currentUser.role[0] === UserRoleEnum.WashMan) {
+      this.isWMUser = true;
     } 
   }
 
@@ -95,14 +95,14 @@ export class BasePage {
 
   menuActive(menuCtrl) {
     menuCtrl.enable(true, 'menu');
-    menuCtrl.enable(false, 'menuPMC');
+    menuCtrl.enable(false, 'menuWM');
     return 'menu';
   }
   
-  menuPMCActive(menuCtrl) { 
+  menuWMActive(menuCtrl) { 
     menuCtrl.enable(false, 'menu');
-    menuCtrl.enable(true, 'menuPMC');
-    return 'menuPMC';
+    menuCtrl.enable(true, 'menuWM');
+    return 'menuWM';
   }
  
 }

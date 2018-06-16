@@ -16,7 +16,7 @@ export class AppSettings{
        //Amin:Todo: why the mode doesn't works well. it's always dev mode. 
        //Amin:Important. Please make sure if deploy to server, the url should be an IP or internet url, 'localhost' is wrong, when user 
        //access this , if use localhost, it would try to connect localhost on user's device.
-       return "http://106.14.132.131:3000";
+       return "http://localhost:3001";
     //    if (ENV.mode === 'Production') {
     //         return "http://106.14.132.131:3000";
     //     } else if (ENV.mode === 'Development') {
@@ -177,9 +177,9 @@ export enum LeisureParkStatus {
   }
 
   export enum UserRoleEnum { 
-    PMCUser = 'PMCUser' ,
+    CarOwner = 'carowner' ,
     AdminUser  = 'superAdministator',
-    ExternalUser  = 'externalUser' 
+    WashMan  = 'washman' 
   }
 
   export enum UserStatusEnum {

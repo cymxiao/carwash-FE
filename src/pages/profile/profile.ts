@@ -40,7 +40,7 @@ export class ProfilePage extends BasePage {
     //console.dir(this.user);
     this.currentCarport = AppSettings.getCurrentCarport();
     this.initVariables();
-    if (this.isPMCUser) {
+    if (this.isWMUser) {
       //PMC user would have empty community_ID when go to profile page first time. 
       //console.log(this.user.community_ID instanceof ObjectId);
       if (this.user.community_ID && !this.user.community_ID._id && AppSettings.getCurrentCommunityID()) {
@@ -50,7 +50,7 @@ export class ProfilePage extends BasePage {
           }
         });
       }
-      super.menuPMCActive(this.menuCtrl);
+      super.menuWMActive(this.menuCtrl);
     } else {
       super.menuActive(this.menuCtrl);
     }
@@ -72,7 +72,7 @@ export class ProfilePage extends BasePage {
       carPlate: this.user.carPlate
     };
     this.service.updateUser(this.user._id, udpateContent).then((uptUser: any) => {
-      if (this.isPMCUser) {
+      if (this.isWMUser) {
         this.service.updateCommunity(this.user.community_ID._id, { price: this.user.community_ID.price, priceUnit: this.user.community_ID.priceUnit }).then(c => {
           if (c) {
             //console.dir(c);

@@ -32,7 +32,7 @@ export class PmcCarportDashboardPage extends BasePage {
     public alertCtrl: AlertController,
     public apiService: RestServiceProvider) { 
       super(navCtrl, navParams);
-      this.activeMenu = super.menuPMCActive(menuCtrl);
+      this.activeMenu = super.menuWMActive(menuCtrl);
   }
 
  

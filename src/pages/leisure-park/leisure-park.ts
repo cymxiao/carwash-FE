@@ -144,7 +144,7 @@ export class LeisureParkPage extends BasePage{
 
     if (!this.currentUser.community_ID || !this.currentUser.community_ID._id
       || !this.currentCarport || !this.currentCarport.parkingNumber) {
-      if (!this.currentUser.role || (this.currentUser.role && this.currentUser.role[0] !== UserRoleEnum.PMCUser)) {
+      if (!this.currentUser.role || (this.currentUser.role && this.currentUser.role[0] !== UserRoleEnum.WashMan)) {
         this.navCtrl.push(SelectCommunityModalPage, { source: "leisurepark" });
       }
     } 

@@ -21,18 +21,18 @@
         <div padding-horizontal text-center class="animated fadeInDown">
             <div class="logo"></div>
             <h2 ion-text class="text-secondary">
-                <strong>享停就停</strong>  
+                <strong>易洗车</strong>  
             </h2>
         </div>
  
 
         <div padding>
-            <ion-segment [(ngModel)]="isLogin">
-                <ion-segment-button value="login" (click)="navToLoginPage()" class="primary-bg">
-                    登陆
+            <ion-segment [(ngModel)]="userRole">
+                <ion-segment-button value="carowner" class="primary-bg">
+                    车主登录
                 </ion-segment-button>
-                <ion-segment-button value="register" (click)="navToRegisterPage()" class="third-bg">
-                    物业注册
+                <ion-segment-button value="washman" class="primary-bg">
+                    兼职洗车登录
                 </ion-segment-button>
             </ion-segment>
         </div>

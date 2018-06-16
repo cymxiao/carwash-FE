@@ -9,7 +9,6 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LoginPageModule } from '../pages/login/login.module';
-import { RegisterPageModule } from '../pages/register/register.module';
 import { MapPageModule } from '../pages/map/map.module';
 import { CarportPageModule } from '../pages/carport/carport.module';
 import { LeisureParkPageModule } from '../pages/leisure-park/leisure-park.module';
@@ -47,7 +46,6 @@ import { GlobalErrorHandler } from '../providers/global-error-handler/global-err
     BrowserModule,
     HttpClientModule,
     LoginPageModule,
-    RegisterPageModule,
     MapPageModule,
     LeisureParkPageModule,
     SelectCommunityModalPageModule,
